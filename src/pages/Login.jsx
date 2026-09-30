@@ -1,0 +1,6 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Eye, EyeOff, LockKeyhole, ShieldCheck, UserRound } from 'lucide-react';
+import { AuthLayout } from '../components/ui.jsx';
+
+export default function Login(){const [show,setShow]=useState(false);const nav=useNavigate();return <AuthLayout><div className="login-brand"><ShieldCheck/><div><h1>ARIA</h1><p>Autonomous Real-time Intelligence Analyst</p><span>AI-POWERED SOC TRIAGE</span></div></div><form onSubmit={e=>{e.preventDefault();nav('/dashboard')}}><label htmlFor="username">Username or email</label><div className="input-wrap"><UserRound/><input id="username" defaultValue="analyst@secops.internal" autoComplete="username"/></div><label htmlFor="password">Password</label><div className="input-wrap"><LockKeyhole/><input id="password" type={show?'text':'password'} defaultValue="aria-secure-console" autoComplete="current-password"/><button type="button" aria-label={show?'Hide password':'Show password'} onClick={()=>setShow(v=>!v)}>{show?<EyeOff/>:<Eye/>}</button></div><div className="login-options"><label className="remember"><input type="checkbox" defaultChecked/> Remember me</label><button type="button" className="text-button">Forgot password?</button></div><button className="sign-in" type="submit">Sign In</button></form></AuthLayout>}
